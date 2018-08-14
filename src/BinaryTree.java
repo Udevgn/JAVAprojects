@@ -73,6 +73,13 @@ public class BinaryTree{
 		else 
 			return null;
 	}
+	boolean isMirror(Node root_a,Node root_b){
+		if(root_a == null && root_b == null)
+			return true;
+		if(root_a == null || root_b == null)
+			return true;
+		return((root_a.data==root_b.data) && isMirror(root_a.left,root_b.left) && isMirror(root_a.right,root_b.right));
+	}
 	
 	public static void main(String[] args){
 		BinaryTree bt = new BinaryTree();
@@ -82,8 +89,16 @@ public class BinaryTree{
 		bt.root = bt.insertNode(bt.root,5,"LL",0);
 		bt.root = bt.insertNode(bt.root,6,"LR",0);
 		bt.root = bt.insertNode(bt.root,7,"RR",0);
-		bt.infixTraversal(bt.root);
-		Node lca = bt.LCA(bt.root,bt.root.left,bt.root.left.left);
+		BinaryTree btm = new BinaryTree();
+		btm.root = btm.insertNode(btm.root,2,"",0);
+		btm.root = btm.insertNode(btm.root,3,"R",0);
+		btm.root = btm.insertNode(btm.root,1,"L",0);
+		btm.root = btm.insertNode(btm.root,5,"LL",0);
+		btm.root = btm.insertNode(btm.root,6,"LR",0);
+		btm.root = btm.insertNode(btm.root,7,"RR",0);
+		btm.infixTraversal(btm.root);
+		System.out.println(bt.isMirror(bt.root,btm.root));
+		Node lca = bt.LCA(btm.root,btm.root.left,btm.root.left.left);
 		//System.out.println(bt.root.left.data+" "+bt.root.left.left.data);
 		//System.out.println("least common ancestor:"+lca.data);
 		
