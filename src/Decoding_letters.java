@@ -22,7 +22,13 @@ class GFG {
 	        int dp[] = new int[N+1];
 	        dp[0] = 1;
 	        dp[1]  =1;
+		int flag_0 = 0;
 	        for(int i=2;i<=N;i++){
+		    if(code[i-1]==0 && code[i-2]>2)
+	            {
+	              flag_0 =1;  
+	              break;
+	            }
 	            if(code[i-2]<2)
 	                dp[i] = dp[i-2]+dp[i-1];
 	            else if(code[i-2]==2 && (code[i-1]<=6))
